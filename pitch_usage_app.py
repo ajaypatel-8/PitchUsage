@@ -110,7 +110,7 @@ final_result = result.merge(pitch_usage_raw[['player_name', 'n_thruorder_pitcher
                             how='left')
 
 # Sort values by player, time through the order, and pitch type for display
-final_result = final_result.sort_values(by=['player_name', 'n_thruorder_pitcher', 'pitch_type'])
+final_result = final_result.sort_values(by=['player_name', 'pitch_type', 'n_thruorder_pitcher'])
 
 # Convert pitch movement from feet to inches
 final_result['pfx_x'] = final_result['pfx_x'] * 12
