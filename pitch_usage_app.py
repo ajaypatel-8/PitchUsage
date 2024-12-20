@@ -14,12 +14,15 @@ This app was designed for a simple purpose: analyze how pitchers change their ar
             \nBy Ajay Patel - Reach out to me on Twitter @ajaypatel8_!
 """)
 
-# Read in data / pitch data from 2024
-df1 = pd.read_parquet('data_1_2024.parquet')
-df2 = pd.read_parquet('data_2_2024.parquet')
-df3 = pd.read_parquet('data_3_2024.parquet')
+@st.cache_data
+def load_data():
+    df1 = pd.read_parquet('data_1_2024.parquet')
+    df2 = pd.read_parquet('data_2_2024.parquet')
+    df3 = pd.read_parquet('data_3_2024.parquet')
 
-data = pd.concat([df1, df2, df3])
+    return pd.concat([df1, df2, df3])
+
+data = load_data()
 
 # Only interested in first three times through the order
 data = data[data['n_thruorder_pitcher'].isin([1, 2, 3])]
